@@ -1,0 +1,7 @@
+.ipynb_checkpoints
+db.sqlite3
+__pycache__
+__init__old.py
+table-draft.py
+processing
+generateCharacter.py
