@@ -29,7 +29,7 @@ def processChatterbotRequests(names):
     # ['Margret', 'Sheila', 'Mortimer', 'Oscar', 'Billiph', 'Joseffia']
     for i in range(0, n):
         print ('\nTraining ' + names[i])
-        bots.append(chatter.initBot(names[i], 'gossip'))
+        bots.append(chatter.initBot(names[i]))
     return bots
 
 
