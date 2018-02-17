@@ -1,14 +1,18 @@
 from chatterbot import ChatBot
 
-def initBot(name='',corpus='all'):
+def initBot(name='', corpora=['all']):
     chatbot = ChatBot(
         name,
         trainer='chatterbot.trainers.ChatterBotCorpusTrainer'
     )
-    if (corpus == 'all'):
+    if (corpora[0] == 'all'):
+        print(corpora)
         chatbot.train("chatterbot.corpus.english")
+    elif (corpora[0] == 'brenda'):
+        chatbot.train('/Users/ben/Documents/pyGame/roundtable/chatter/brenda.yml')
     else:
-        chatbot.train("chatterbot.corpus.english." + corpus)
+        for i in range(0, len(corpora)):
+            chatbot.train("chatterbot.corpus.english." + corpora[i])
     # # Train based on the english corpus
     # chatbot.train("chatterbot.corpus.english")
 
