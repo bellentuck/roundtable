@@ -43,6 +43,8 @@ def processChatterbotRequests(names):
             'greetings']))
         elif (forum == 'brenda'):
             bots.append(chatter.initBot(names[i], ['brenda']))
+        elif (forum == 'batalli'):
+            bots.append(chatter.initBot(names[i], ['food']))
         else:
             print('hi')
             bots.append(chatter.initBot(names[i]))
@@ -119,8 +121,7 @@ def main():
     while (convoHasEnded==False):
         i = 0
         for bot in chatterPlayers:
-            if (convoHasEnded==True):
-                break
+
             if (convoHasBegun==False):
                 line = bot.get_response(topic)
                 convoHasBegun = True
@@ -136,11 +137,28 @@ def main():
 
             if (isLoop == True):
                 line = input('\nYou: ')
+                prevLine = line
                 line = str(bot.get_response(line))
 
+            if (prevLine == 'Please end this conversation.'):
+                line = 'Ok, goodbye.'
+
             print('\n' + names[i] + ': ' + line)
+
+            if (line == 'Ok, goodbye.'):
+                convoHasEnded = True
+                break
+
             i += 1
 
+    lim = len(chatterPlayers)
+    if (lim == 1):
+        formattedNames = names[0]
+    elif (lim == 2):
+        formattedNames = names[0] + ' and ' + names[1]
+    else:
+        formattedNames = ', '.join(names[:lim-1]) + ', and ' + names[lim-1]
+    print('\n\nRate your conversation with ' + formattedNames + ':')
 
 
     # # n bots
